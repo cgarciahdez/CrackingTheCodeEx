@@ -3,7 +3,7 @@ package methods;
 import java.util.Arrays;
 
 public class Helpers {
-	
+
 	public static void printCharMatrix(char[][] x){
 		for (int i = 0; i < x.length; i++) {
 			for (int j = 0; j< x[i].length; j++) {
@@ -12,7 +12,7 @@ public class Helpers {
 			System.out.println();
 		}
 	}
-	
+
 	public static void printMatrix(int[][] x){
 		for (int i = 0; i < x.length; i++) {
 			for (int j = 0; j< x[i].length; j++) {
@@ -21,7 +21,7 @@ public class Helpers {
 			System.out.println();
 		}
 	}
-	
+
 	public static int randomInt(int n) {
 		return (int) (Math.random() * n);
 	}
@@ -39,19 +39,19 @@ public class Helpers {
 		}
 		return matrix;
 	}
-	
+
 	public static char[] mergeSort(char[] s){
 		System.out.println(s);
 		if(s.length<=1){
 			return s;
 		}
 		int mid = (s.length-1)/2;
-		
+
 		char[] l1=mergeSort(Arrays.copyOfRange(s, 0, mid+1));
 		char[] l2=mergeSort(Arrays.copyOfRange(s, mid+1, s.length));
 		return merge(l1,l2);
 	}
-	
+
 	private static char[] merge(char[] l1,char[] l2){
 		if(l1.length<=0){
 			return l2;
@@ -63,7 +63,7 @@ public class Helpers {
 		int j=0; //pointer for l2
 		int current =0; //pointer for new array
 		char[] ret = new char[l1.length+l2.length];
-		
+
 		while(i<l1.length||j<l2.length){
 			if (i>=l1.length){
 				ret[current] = l2[j];
@@ -81,7 +81,7 @@ public class Helpers {
 				ret[current] = l2[j];
 				j++;
 			}
-			
+
 			current++;
 		}
 		return ret;
@@ -97,7 +97,7 @@ public class Helpers {
 		}
 		return head;
 	}
-	
+
 	public static LinkedListNode<Integer> valueLinkedList(int value, int N){
 		LinkedListNode<Integer> head = new LinkedListNode<Integer>(value);
 		LinkedListNode<Integer> n = head;
@@ -105,6 +105,21 @@ public class Helpers {
 			LinkedListNode<Integer> next = new LinkedListNode<Integer>(value);
 			n.setNext(next);
 			n = next;
+		}
+		return head;
+	}
+
+	public static LinkedListNode<Integer> createLinkedListFromArray(int[] array)
+	{
+		if(array.length==0){
+			return null;
+		}
+		LinkedListNode<Integer> head = new LinkedListNode<Integer>(array[0]);
+		LinkedListNode<Integer> n = head;
+		
+		for (int i=1;i<array.length;i++){
+			n.next=new LinkedListNode<Integer>(array[i]);
+			n=n.next;
 		}
 		return head;
 	}
