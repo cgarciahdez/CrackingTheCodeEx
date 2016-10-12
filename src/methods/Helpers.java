@@ -123,5 +123,20 @@ public class Helpers {
 		}
 		return head;
 	}
+	
+	private static TreeNode<Integer> treeFromArray(int start, int end, int[] array){ //end is inclusive
+		if(end<start){
+			return null;
+		}
+		int middle = (start+end)%2==0?(start+end)/2:(start+end)/2+1;//can be used to make complete Btree
+		TreeNode<Integer> midNode=new TreeNode<Integer>(array[middle]);
+		midNode.setLeft(treeFromArray(start, middle-1, array));
+		midNode.setRight(treeFromArray(middle+1, end, array));
+		return midNode;
+	}
+	
+	public static TreeNode<Integer> treeFromArray(int[] array){
+		return treeFromArray(0, array.length-1, array);
+	}
 
 }
